@@ -1,0 +1,14 @@
+{
+  "name": "open-uri",
+  "description": "Asynchronous Open URI, a CommonJS module inspired by Rubys Open-URI library.",
+  "homepage": "http://github.com/publicclass/open-uri",
+  "version": "0.1.0",
+  "author": "Robert Sköld <robert@publicclass.se>",
+  "dependencies": {
+    "addressable": ">0.2.0"
+  },
+  "keywords": ["open", "uri", "open-uri"],
+  "directories": { "lib": "./lib/open-uri" },
+  "scripts": { "test": "expresso test/test-open-uri.js" },
+  "engines": { "node": ">= 0.3.6" }
+}
