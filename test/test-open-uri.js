@@ -2,15 +2,14 @@ var open = require("../lib/open-uri")
   , assert = require("assert");
   
 function writeStream(){
-  var stream = {
-    written: false,
-    ended: false,
-    writable: true,
-    on: function(evt,fn){},
-    write: function(d){stream.written = true},
-    end: function(d){stream.ended = true}
-  }
-  return stream
+  var stream = require("stream").Stream();
+  console.log( new require("stream").Stream )
+  stream.written = false;
+  stream.ended = false;
+  stream.writable = true,
+  stream.write = function(d){stream.written = true};
+  stream.end = function(d){stream.ended = true};
+  return stream;
 }
 
 exports["Get a website"] = function(beforeExit){

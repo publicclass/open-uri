@@ -33,6 +33,15 @@
 
   http, https & file
 
+## TODO
+
+*  _HTTP(S)_ Take care of HTTP Basic Auth if uri.userinfo is set.
+
+*  _HTTP(S)_ Handle different Content-Types: parse JSON if it's application/json, return a buffer etc.
+
+* _HTTP(S_ Possibly support older versions of Node
+
+* Get the tests to pass, having some issues with faking a Writeable Stream.
 
 ## License 
 
