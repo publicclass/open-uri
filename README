@@ -33,15 +33,36 @@
 
   http, https & file
 
+
+### Options for all schemes
+
+* `stream`    (boolean) For when you only want the callback to receive a stream instead of the complete body as the second argument. Defaults to false.
+
+
+### Options for HTTP(S)
+
+* `follow`    (boolean) Follow redirects. Defaults to true.
+
+* `headers`   (object)  Headers to pass along with the HTTP request.
+
+
 ## TODO
 
-*  _HTTP(S)_ Take care of HTTP Basic Auth if uri.userinfo is set.
+*  _HTTP(S)_ Handle different Content-Types: parse JSON if it's application/json (also handle JSONP?), return a buffer etc.
 
-*  _HTTP(S)_ Handle different Content-Types: parse JSON if it's application/json, return a buffer etc.
+*  _HTTP(S)_ Possibly support older versions of Node
 
-* _HTTP(S_ Possibly support older versions of Node
+*  _HTTP(S)_ Proxy support?
 
 * Get the tests to pass, having some issues with faking a Writeable Stream.
+
+
+## Thanks to
+
+* [Mikeal Rogers](https://github.com/mikeal), for his excellent [request module](https://github.com/mikeal/request/).
+
+* [TJ Holowaychuck](https://github.com/visionmedia), for his minimalist projects inspiring this little tool.
+
 
 ## License 
 
