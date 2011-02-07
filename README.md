@@ -33,6 +33,8 @@
 
   http, https & file
 
+Uses the [addressable module](https://github.com/publicclass/addressable) for parsing the scheme.
+
 
 ### Options for all schemes
 
@@ -50,7 +52,7 @@
 
 *  _HTTP(S)_ Handle different Content-Types: parse JSON if it's application/json (also handle JSONP?), return a buffer etc.
 
-*  _HTTP(S)_ Possibly support older versions of Node
+*  _HTTP(S)_ Support older versions of Node? Currently only support 0.3.7 and up (because of the new HTTP Client API).
 
 *  _HTTP(S)_ Proxy support?
 
