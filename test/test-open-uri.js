@@ -2,8 +2,7 @@ var open = require("../lib/open-uri")
   , assert = require("assert");
   
 function writeStream(){
-  var stream = require("stream").Stream();
-  console.log( new require("stream").Stream )
+  var stream = new require("stream").Stream();
   stream.written = false;
   stream.ended = false;
   stream.writable = true,
@@ -26,7 +25,7 @@ exports["Get a relative file"] = function(beforeExit){
   var loaded = false;
   open("../README",function(err,log){  
     loaded = true;
-    assert.ok(!err)
+    assert.ifError(err)
     assert.type(log.toString(),"string")
     assert.ok(log.length>0)
   })
@@ -65,5 +64,20 @@ exports["Chain it"] = function(beforeExit){
     assert.ok(loaded)
     assert.ok(stream.written)
     assert.ok(stream.ended)
+  })
+}
+
+exports["Throw when error without callback."] = function(){
+  assert.throws(function(){
+    open("/i-dont-exist!")
+  })
+}
+
+
+exports["Does not throw when error with a callback."] = function(){
+  assert.doesNotThrow(function(){
+    open("/i-dont-exist!",function(err){
+      assert.ifError(err);
+    })
   })
 }
