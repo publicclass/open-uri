@@ -48,13 +48,31 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 * `headers`   (object)  Headers to pass along with the HTTP request.
 
 
+## History
+
+### 0.2.0
+
+* _HTTP(S)_ [Feature] Now supports gzip responses (and adds a 'Accept-Encoding: gzip'-header if there is none already).
+
+* _HTTP(S)_ [Feature] Now decodes JSON if response is of 'Content-Type: application/json'.
+
+* _HTTP(S)_ [Bug] Fixed an issue with redirects.
+
+
+### 0.1.0
+
+* Initial version.
+
+
 ## TODO
 
-*  _HTTP(S)_ Handle different Content-Types: parse JSON if it's application/json (also handle JSONP?), return a buffer etc.
+*  _HTTP(S)_ Handle binary responses. Buffer it up entirely if it's not a stream (should probably recommend 'streaming' over a certain Content-Length).
 
 *  _HTTP(S)_ Support older versions of Node? Currently only support 0.3.7 and up (because of the new HTTP Client API).
 
 *  _HTTP(S)_ Proxy support?
+
+* More schemes support: FTP?
 
 * Get the tests to pass, having some issues with faking a Writeable Stream.
 
