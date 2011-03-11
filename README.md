@@ -50,6 +50,11 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## TODO
 
+* _HTTPS_ Requesting HTTPS required certificate and private key, how should these be provided? Should look for them in:
+    1. In the options as a normal https.get(). Should it expand them if it's a path? I.e. {key: "./key.pem", cert: "./cert.pem"} is fs.readSync()-ed?
+    2. ENV-variables to their paths, NODE_HTTPS_KEY=./key.pem NODE_HTTPS_CERT=./cert.pem
+    3. Check for them in the process pwd.
+
 *  _HTTP(S)_ Handle different Content-Types: parse JSON if it's application/json (also handle JSONP?), return a buffer etc.
 
 *  _HTTP(S)_ Support older versions of Node? Currently only support 0.3.7 and up (because of the new HTTP Client API).
