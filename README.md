@@ -27,9 +27,9 @@
 
 	// Chain it 
 	open("http://google.com",console.log)("http://publicclass.se",process.stdout)
-  
-  // Get a file off of an FTP (with auth)
-  open("ftp://user:pass@ftp.example.com/myfile.txt",function(err,txt){console.log(txt)})
+
+	// Get a file off of an FTP
+  	open("ftp://user:pass@ftp.example.com/myfile.txt",function(err,txt){console.log(txt)})
 
 
 ## Supported schemes
@@ -41,15 +41,24 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ### Options for all schemes
 
-* `stream`    (boolean) For when you only want the callback to receive a stream instead of the complete body as the second argument. Defaults to false.
+* `stream`    (boolean) For when you only want the callback to receive a stream instead of the complete body as the second argument. Defaults to `false`.
 
 
 ### Options for HTTP(S)
 
-* `follow`    (boolean) Follow redirects. Defaults to true.
+* `follow`    (boolean) Follow redirects. Defaults to `true`.
+* `gzip`      (boolean) If the request should be attempted with gzip. Defaults to `true` if the [node-compress module](https://github.com/waveto/node-compress) is available.
+* `headers`   (object) Headers to pass along with the HTTP request.
 
-* `headers`   (object)  Headers to pass along with the HTTP request.
 
+### Options for file
+
+* `encoding`  (string) The encoding of the file to read.
+
+
+### Options for FTP
+
+* `anonymous` (boolean) If no user info is in the URI, add anonymous. Defaults to `true`.
 
 ## History
 
@@ -57,15 +66,15 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * [Feature] Better parsing of content using the [mime module](https://github.com/bentomas/node-mime) for Content-Type lookup.
 
-* [Feature] Initial _FTP_ support using [node-ftp](https://github.com/mscdex/node-ftp).
+* [Feature] _FTP_ Initial support using the [node-ftp module](https://github.com/mscdex/node-ftp).
 
 ### 0.2.0
 
-* _HTTP(S)_ [Feature] Now supports gzip responses (and adds a 'Accept-Encoding: gzip'-header if there is none already).
+* [Feature] _HTTP(S)_ Now supports gzip responses (and adds a 'Accept-Encoding: gzip'-header if there is none already).
 
-* _HTTP(S)_ [Feature] Now decodes JSON if response is of 'Content-Type: application/json'.
+* [Feature] _HTTP(S)_ Now decodes JSON if response is of 'Content-Type: application/json'.
 
-* _HTTP(S)_ [Bug] Fixed an issue with redirects.
+* [Bug] _HTTP(S)_ Fixed an issue with redirects.
 
 
 ### 0.1.0
@@ -75,15 +84,17 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## TODO
 
-*  _HTTP(S)_ Handle binary responses. Buffer it up entirely if it's not a stream (should probably recommend 'streaming' over a certain Content-Length).
-
-*  _HTTP(S)_ Support older versions of Node? Currently only support 0.3.7 and up (because of the new HTTP Client API).
+*  _HTTP(S)_ Support older versions of Node? Currently only support 0.3.6 and up (because of the new HTTP Client API).
 
 *  _HTTP(S)_ Proxy support?
 
-* More schemes support? Suggestions?
+*  _HTTPS_ I think some certificates are required for the HTTPS client.
+
+* A timeout option for all schemes would be useful.
 
 * Get the tests to pass, having some issues with faking a Writeable Stream.
+
+* More schemes support? Suggestions?
 
 
 ## Thanks to
