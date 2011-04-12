@@ -27,13 +27,16 @@
 
 	// Chain it 
 	open("http://google.com",console.log)("http://publicclass.se",process.stdout)
+  
+  // Get a file off of an FTP (with auth)
+  open("ftp://user:pass@ftp.example.com/myfile.txt",function(err,txt){console.log(txt)})
 
 
 ## Supported schemes
 
-  http, https & file
+  http, https, file & ftp
 
-Uses the [addressable module](https://github.com/publicclass/addressable) for parsing the scheme.
+Uses the [addressable module](https://github.com/publicclass/addressable) for parsing the scheme and the [mime module](https://github.com/bentomas/node-mime) for parsing the data.
 
 
 ### Options for all schemes
@@ -49,6 +52,12 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 
 ## History
+
+### 0.2.1
+
+* [Feature] Better parsing of content using the [mime module](https://github.com/bentomas/node-mime) for Content-Type lookup.
+
+* [Feature] Initial _FTP_ support using [node-ftp](https://github.com/mscdex/node-ftp).
 
 ### 0.2.0
 
@@ -72,7 +81,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 *  _HTTP(S)_ Proxy support?
 
-* More schemes support: FTP?
+* More schemes support? Suggestions?
 
 * Get the tests to pass, having some issues with faking a Writeable Stream.
 
