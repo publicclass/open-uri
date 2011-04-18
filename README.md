@@ -104,6 +104,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
   - NNTP (using [node-nntp module](https://github.com/mscdex/node-nntp))
 
 * A little refactoring so we'd do `require("./open-uri/"+uri.scheme)` in the main function and keep the different schemes in separate files.
+ 
 
 
 ## Thanks to
