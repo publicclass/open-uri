@@ -1,1 +1,1 @@
-module.exports = require("lib/open-uri")
+module.exports = require("./lib/open-uri")

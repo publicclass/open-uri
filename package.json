@@ -9,7 +9,6 @@
     "mime": ">= 1.0.0"
   },
   "keywords": ["open", "uri", "open-uri"],
-  "main": "./lib/open-uri",
   "scripts": { "test": "expresso test/test-open-uri.js" },
   "engines": { "node": ">= 0.3.6" }
 }
