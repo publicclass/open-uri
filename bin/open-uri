@@ -1,0 +1,6 @@
+#!/usr/bin/env node
+
+var open = require("../lib/open-uri") 
+  , uri = process.argv[0] == "node" ? process.argv[2] : process.argv[3];
+  
+open(uri,process.stdout)

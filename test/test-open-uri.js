@@ -25,7 +25,7 @@ exports["Get a website"] = function(beforeExit){
 
 exports["Get a relative file"] = function(beforeExit){
   var loaded = false;
-  open("../README.md",function(err,log){  
+  open("README.md",function(err,log){  
     loaded = true;
     assert.ifError(err)
     assert.type(log.toString(),"string")
@@ -65,6 +65,16 @@ exports["Get a text file from ftp"] = function(beforeExit){
   beforeExit(function(){assert.ok(loaded)})
 }
 
+exports["Attempt to get a non-existing text file from ftp"] = function(beforeExit){
+  var loaded = false;
+  open("ftp://ftp.sunet.se/im-not-here.txt",function(err,rfc){
+    loaded = true
+    assert.ok(err)
+    assert.type(rfc,"undefined")
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
 exports["Stream a text file from ftp to a file"] = function(beforeExit){
   var path = "/tmp/rfc-"+Date.now()+".html";
   var file = require("fs").createWriteStream(path)
@@ -96,7 +106,6 @@ exports["Throw when error without callback."] = function(){
     open("/i-dont-exist!")
   })
 }
-
 
 exports["Does not throw when error with a callback."] = function(){
   assert.doesNotThrow(function(){

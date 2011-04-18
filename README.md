@@ -94,7 +94,16 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * Get the tests to pass, having some issues with faking a Writeable Stream.
 
+* A binary, just for fun really. Usage: `open-uri http://google.com`. 
+  - Output to process.stdout by default. 
+  - Allow a REST interface? So if something is written to stdin it's sent as body to the url using POST by default, but definable with -X (curl style!)
+  - Pass command line arguments as options to the scheme functions. Ex. `open-uri -gzip http://google.com` sets opts.gzip to true.
+
 * More schemes support? Suggestions?
+  - SQL query. Is there a standard URI for this? Something like: `mysql://root@localhost/mydb?query=SELECT * FROM x;` or `sqlite3://file.sqlite?query=SELECT * FROM x;` possibly with support for input escaping. open("sqlite3://file.sqlite?query=SELECT * FROM x WHERE id=? AND name=?;",[12,"bob"]) using the drivers own escaping. With a callback like `function(err,rows,meta){}`.
+  - NNTP (using [node-nntp module](https://github.com/mscdex/node-nntp))
+
+* A little refactoring so we'd do `require("./open-uri/"+uri.scheme)` in the main function and keep the different schemes in separate files.
 
 
 ## Thanks to
