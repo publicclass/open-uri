@@ -71,6 +71,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * [Feature] Added a simple binary. Usage: `open-uri http://google.com`
 
+* [Fix] _FTP_ is now closing properly when completed or failed.
 
 ### 0.2.1
 
@@ -85,7 +86,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * [Feature] _HTTP(S)_ Now decodes JSON if response is of 'Content-Type: application/json'.
 
-* [Bug] _HTTP(S)_ Fixed an issue with redirects.
+* [Fix] _HTTP(S)_ Fixed an issue with redirects.
 
 
 ### 0.1.0
@@ -99,7 +100,10 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 *  _HTTP(S)_ Proxy support?
 
-*  _HTTPS_ I think some certificates are required for the HTTPS client.
+* _HTTPS_ Requesting HTTPS required certificate and private key, how should these be provided? Should look for them in:
+    1. In the options as a normal https.get(). Should it expand them if it's a path? I.e. {key: "./key.pem", cert: "./cert.pem"} is fs.readSync()-ed?
+    2. ENV-variables to their paths, NODE_HTTPS_KEY=./key.pem NODE_HTTPS_CERT=./cert.pem
+    3. Check for them in the process pwd.
 
 * A timeout option for all schemes would be useful.
 
@@ -113,7 +117,6 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
   - NNTP (using [node-nntp module](https://github.com/mscdex/node-nntp))
 
 
-
 ## Thanks to
 
 * [Mikeal Rogers](https://github.com/mikeal), for his excellent [request module](https://github.com/mikeal/request/).
@@ -121,6 +124,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 * [TJ Holowaychuck](https://github.com/visionmedia), for his minimalist projects inspiring this little tool.
 
 * [Brian White](https://github.com/mscdex), for [ftp](https://github.com/mscdex/node-ftp) and [nntp](https://github.com/mscdex/node-nntp) modules.
+
 
 ## License 
 
