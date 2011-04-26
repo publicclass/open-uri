@@ -120,6 +120,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * [TJ Holowaychuck](https://github.com/visionmedia), for his minimalist projects inspiring this little tool.
 
+* [Brian White](https://github.com/mscdex), for [ftp](https://github.com/mscdex/node-ftp) and [nntp](https://github.com/mscdex/node-nntp) modules.
 
 ## License 
 

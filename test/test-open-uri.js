@@ -42,7 +42,7 @@ exports["Stream an absolute file"] = function(beforeExit){
     assert.ok(stream.ended)
   })
 }
-
+ 
 exports["Stream a website to a file"] = function(beforeExit){
   var path = "/tmp/goog-"+Date.now()+".html";
   var file = require("fs").createWriteStream(path)
