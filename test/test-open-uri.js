@@ -23,6 +23,17 @@ exports["Get a website"] = function(beforeExit){
   beforeExit(function(){assert.ok(loaded)})
 }
 
+exports["Get an encrypted website"] = function(beforeExit){
+  var loaded = false;
+  open("https://github.com",function(err,github){
+    loaded = true;
+    assert.ifError(err)
+    assert.type(github,"string")
+    assert.ok(github.length>0)
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
 exports["Get a relative file"] = function(beforeExit){
   var loaded = false;
   open("README.md",function(err,log){  

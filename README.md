@@ -46,10 +46,13 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ### Options for HTTP(S)
 
-* `follow`    (boolean) Follow redirects. Defaults to `true`.
-* `gzip`      (boolean) If the request should be attempted with gzip. Defaults to `true` if the [node-compress module](https://github.com/waveto/node-compress) is available.
-* `headers`   (object) Headers to pass along with the HTTP request.
-
+* `follow`    (boolean)   Follow redirects. Defaults to `true`.
+* `gzip`      (boolean)   If the request should be attempted with gzip. Defaults to `true` if the [node-compress module](https://github.com/waveto/node-compress) is available.
+* `headers`   (object)    Headers to pass along with the HTTP request.
+* `method`    (string)    HTTP request method. Default 'GET'.
+* `key`       (string)    (HTTPS Only) Private key to use for SSL. Defaults to ENV var `NODE_HTTPS_KEY` or attempts to find it as "./key.pem".
+* `cert`      (string)    (HTTPS Only) Public x509 certificate to use. Defaults to ENV var NODE_HTTPS_CERT or attempts to find it as "./cert.pem".
+* `ca`        (string|array) (HTTPS Only) An authority certificate or array of authority certificates to check the remote host against.
 
 ### Options for file
 
@@ -64,6 +67,13 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.3.0
+
+* [Feature] Updated `addressable` dependency to 0.3.1.
+
+* [Feature] _HTTPS_ Added key and certificate parsing.
+
+* [Feature] _HTTP_/_HTTPS_ Now a `method` option can be used if anything other than GET is desired.
 
 ### 0.2.2
 
@@ -100,10 +110,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 *  _HTTP(S)_ Proxy support?
 
-* _HTTPS_ Requesting HTTPS required certificate and private key, how should these be provided? Should look for them in:
-    1. In the options as a normal https.get(). Should it expand them if it's a path? I.e. {key: "./key.pem", cert: "./cert.pem"} is fs.readSync()-ed?
-    2. ENV-variables to their paths, NODE_HTTPS_KEY=./key.pem NODE_HTTPS_CERT=./cert.pem
-    3. Check for them in the process pwd.
+*  _HTTP(S)_ Support for a body request payload.
 
 * A timeout option for all schemes would be useful.
 
