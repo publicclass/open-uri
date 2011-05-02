@@ -16,10 +16,10 @@ function writeStream(){
 // A simple test echo server
 function echo(port,fn){
   var http = require("http").createServer(function(req,res){
-    res.writeHead(200, {
-      'Content-Type': req.headers["content-type"] || 'text/plain',
-      'Content-Length': req.headers["content-length"]
-    })
+    var headers = {'Content-Type': req.headers["content-type"] || 'text/plain'}
+    if( req.headers["content-length"] ) 
+      headers["Content-Length"] = req.headers["content-length"];
+    res.writeHead(200, headers)
     req.pipe(res)
   })
   http.listen(port,function(){fn(http)})
@@ -93,6 +93,21 @@ exports["POST some json to a website"] = function(){
     })
   })
 }
+
+
+exports["POST stream text to a website"] = function(){
+  echo(++port,function(server){
+    var file = require("fs").createReadStream("README.md");
+    open("http://localhost:"+port,{method:"POST",body:file},function(err,dump,res){
+      server.close()
+      assert.ifError(err)
+      assert.equal(res.headers["content-type"],"text/plain")
+      assert.type(dump,"string")
+      assert.eql(dump,require("fs").readFileSync("README.md","utf8"))
+    })
+  })
+}
+
 exports["GET a relative file"] = function(beforeExit){
   var loaded = false;
   open("README.md",function(err,log){  
