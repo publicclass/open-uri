@@ -50,6 +50,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 * `gzip`      (boolean)   If the request should be attempted with gzip. Defaults to `true` if the [node-compress module](https://github.com/waveto/node-compress) is available.
 * `headers`   (object)    Headers to pass along with the HTTP request.
 * `method`    (string)    HTTP request method. Default 'GET'.
+* `body`      (readablestream|string|buffer) A body of data to pass with the request.
 * `key`       (string)    (HTTPS Only) Private key to use for SSL. Defaults to ENV var `NODE_HTTPS_KEY` or attempts to find it as "./key.pem".
 * `cert`      (string)    (HTTPS Only) Public x509 certificate to use. Defaults to ENV var NODE_HTTPS_CERT or attempts to find it as "./cert.pem".
 * `ca`        (string|array) (HTTPS Only) An authority certificate or array of authority certificates to check the remote host against.
@@ -73,7 +74,9 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * [Feature] _HTTPS_ Added key and certificate parsing.
 
-* [Feature] _HTTP_/_HTTPS_ Now a `method` option can be used if anything other than GET is desired.
+* [Feature] _HTTP_/_HTTPS_ Added a `method` option can be used if anything other than GET is desired.
+
+* [Feature] _HTTP_/_HTTPS_ Added a `body` options for passing a payload with the request. Can be either a ReadableStream, a String or a Buffer.
 
 ### 0.2.2
 
@@ -108,9 +111,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 *  _HTTP(S)_ Support older versions of Node? Currently only support 0.3.6 and up (because of the new HTTP Client API).
 
-*  _HTTP(S)_ Proxy support?
-
-*  _HTTP(S)_ Support for a body request payload.
+*  _HTTP(S)_ Proxy support.
 
 * A timeout option for all schemes would be useful.
 
