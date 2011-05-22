@@ -68,6 +68,10 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.3.2
+
+* [Fix] Errors was being thrown when using userinfo in HTTP uris.
+
 ### 0.3.1
 
 * [Fix] Updated `addressable` dependency to 0.3.3. Now both addressable.URI and Nodes built-in URL objects are valid as the `uri` argument.

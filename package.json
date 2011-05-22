@@ -2,7 +2,7 @@
   "name": "open-uri",
   "description": "Asynchronous Open URI, a CommonJS module inspired by Rubys Open-URI library.",
   "homepage": "http://github.com/publicclass/open-uri",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "author": "Robert Sköld <robert@publicclass.se>",
   "dependencies": {
     "addressable": ">= 0.3.3",
