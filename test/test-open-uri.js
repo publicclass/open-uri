@@ -74,6 +74,28 @@ exports["GET an encrypted website"] = function(beforeExit){
   beforeExit(function(){assert.ok(loaded)})
 }
 
+exports["GET a website with auth"] = function(beforeExit){
+  var loaded = false;
+  open("http://user:pass@google.com",function(err,google){
+    loaded = true;
+    assert.ifError(err)
+    assert.type(google,"string")
+    assert.ok(google.length>0)
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
+exports["GET an encrypted website with auth"] = function(beforeExit){
+  var loaded = false;
+  open("https://user:pass@google.com",function(err,google){
+    loaded = true;
+    assert.ifError(err)
+    assert.type(google,"string")
+    assert.ok(google.length>0)
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
 exports["POST a string to a website"] = function(){
   echo(++port,function(server){
     open("http://localhost:"+port,{method:"POST",body:"abc"},function(err,dump,res){
