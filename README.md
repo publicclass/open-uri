@@ -68,6 +68,10 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.3.1
+
+* [Fix] Updated `addressable` dependency to 0.3.3. Now both addressable.URI and Nodes built-in URL objects are valid as the `uri` argument.
+
 ### 0.3.0
 
 * [Feature] Updated `addressable` dependency to 0.3.1.
@@ -113,6 +117,10 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 *  _HTTP(S)_ Proxy support.
 
+*  _FTP_ Listing files (when uri.pathname ends with "/")
+
+*  _FTP_ Uploading files (when opts.body is passed)
+
 * A timeout option for all schemes would be useful.
 
 * A binary, just for fun really. Usage: `open-uri http://google.com`. 
@@ -120,10 +128,11 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
   - Allow a REST interface? So if something is written to stdin it's sent as body to the url using POST by default, but definable with -X (curl style!)
   - Pass command line arguments as options to the scheme functions. Ex. `open-uri -gzip http://google.com` sets opts.gzip to true.
 
-* More schemes support? Suggestions?
-  - SQL query. Is there a standard URI for this? Something like: `mysql://root@localhost/mydb?query=SELECT * FROM x;` or `sqlite3://file.sqlite?query=SELECT * FROM x;` possibly with support for input escaping. open("sqlite3://file.sqlite?query=SELECT * FROM x WHERE id=? AND name=?;",[12,"bob"]) using the drivers own escaping. With a callback like `function(err,rows,meta){}`.
+* More schemes support? Suggestions?  
+  - S3 (using [knox module](https://github.com/LearnBoost/knox)), should list objects when path ends with "/"
   - NNTP (using [node-nntp module](https://github.com/mscdex/node-nntp))
-
+  - IRC (using [node-irc module](https://github.com/martynsmith/node-irc)), open("irc://bot@chat.freenode.net/nodejs") -> callback for each message? with a say function in the callback? ex: `function(err,from,to,msg,say){ if( to == "bot" && ~msg.indexOf("hello") ){ say(from+": HI!") } }` `this` could be the irc object so the socket can be closed...
+  - SQL query. Is there a standard URI for this? Something like: `mysql://root@localhost/mydb?query=SELECT * FROM x;` or `sqlite3://file.sqlite?query=SELECT * FROM x;` possibly with support for input escaping. open("sqlite3://file.sqlite?query=SELECT * FROM x WHERE id=? AND name=?;",[12,"bob"]) using the drivers own escaping. With a callback like `function(err,rows,meta){}`.
 
 ## Thanks to
 

@@ -5,10 +5,12 @@
   "version": "0.3.0",
   "author": "Robert Sköld <robert@publicclass.se>",
   "dependencies": {
-    "addressable": ">= 0.3.1",
-    "mime": ">= 1.0.0",
-    "ftp": "0.1.1"
+    "addressable": ">= 0.3.3",
+    "mime": ">= 1.0.0"
   },
+  "devDependencies": {
+    "ftp": "0.1.1"
+  }
   "keywords": ["open", "uri", "open-uri"],
   "scripts": { "test": "expresso test/test-open-uri.js" },
   "engines": { "node": ">= 0.3.6" }
