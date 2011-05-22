@@ -1,7 +1,10 @@
 var open = require("../lib/open-uri")
+  , addressable = require("addressable")
   , assert = require("assert")
   , Stream = require("stream").Stream
   , port = 65000;
+
+
 
 function writeStream(){
   var stream = new Stream();
@@ -28,6 +31,30 @@ function echo(port,fn){
 exports["GET a website"] = function(beforeExit){
   var loaded = false;
   open("http://google.com",function(err,google){
+    loaded = true;
+    assert.ifError(err)
+    assert.type(google,"string")
+    assert.ok(google.length>0)
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
+exports["GET a website with an addressable.URI object"] = function(beforeExit){
+  var loaded = false;
+  var url = addressable.parse("http://google.com");
+  open(url,function(err,google){
+    loaded = true;
+    assert.ifError(err)
+    assert.type(google,"string")
+    assert.ok(google.length>0)
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
+exports["GET a website with a node.js built-in URL object"] = function(beforeExit){
+  var loaded = false;
+  var url = require("url").parse("http://google.com");
+  open(url,function(err,google){
     loaded = true;
     assert.ifError(err)
     assert.type(google,"string")
