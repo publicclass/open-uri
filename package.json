@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "ftp": "0.1.1"
-  }
+  },
   "keywords": ["open", "uri", "open-uri"],
   "scripts": { "test": "expresso test/test-open-uri.js" },
   "engines": { "node": ">= 0.3.6" }
