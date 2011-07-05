@@ -68,6 +68,10 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.3.3
+
+* [Fix] Avoid 'Out of bounds'-errors by using Buffer.byteLength(chunk) instead of chunk.length.
+
 ### 0.3.2
 
 * [Fix] Errors was being thrown when using userinfo in HTTP uris.
