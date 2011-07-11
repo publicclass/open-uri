@@ -68,6 +68,10 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.3.4
+
+* [Fix] Use Buffer.byteLength(body) for Content-Length header as well, it's just better (and fixes a bug where the body was cut off).
+
 ### 0.3.3
 
 * [Fix] Avoid 'Out of bounds'-errors by using Buffer.byteLength(chunk) instead of chunk.length.
