@@ -221,6 +221,16 @@ exports["Stream a text file from ftp to a file"] = function(beforeExit){
   })
 }
 
+exports["GET a redirect with a relative Location"] = function(beforeExit){
+  var loaded = false;
+  open("http://golang.org/cmd/5a",function(err,go){
+    loaded = true
+    assert.ok(err)
+    console.log(go)
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
 exports["Chain it"] = function(beforeExit){
   var stream = writeStream();
   var loaded = false;

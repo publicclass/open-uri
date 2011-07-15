@@ -68,6 +68,12 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.3.5
+
+* [Fix] User Buffer.byteLength(body) only on strings, and body.length on Buffers.
+
+* [Fix] Support for broken redirect implementations that give relative Location: headers.
+
 ### 0.3.4
 
 * [Fix] Use Buffer.byteLength(body) for Content-Length header as well, it's just better (and fixes a bug where the body was cut off).
@@ -141,7 +147,8 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
   - Allow a REST interface? So if something is written to stdin it's sent as body to the url using POST by default, but definable with -X (curl style!)
   - Pass command line arguments as options to the scheme functions. Ex. `open-uri -gzip http://google.com` sets opts.gzip to true.
 
-* More schemes support? Suggestions?  
+* More schemes support? Suggestions?
+  - Support for opening a file descriptor? Basically a shortcut for fs.readFile(fd).
   - S3 (using [knox module](https://github.com/LearnBoost/knox)), should list objects when path ends with "/"
   - NNTP (using [node-nntp module](https://github.com/mscdex/node-nntp))
   - IRC (using [node-irc module](https://github.com/martynsmith/node-irc)), open("irc://bot@chat.freenode.net/nodejs") -> callback for each message? with a say function in the callback? ex: `function(err,from,to,msg,say){ if( to == "bot" && ~msg.indexOf("hello") ){ say(from+": HI!") } }` `this` could be the irc object so the socket can be closed...
