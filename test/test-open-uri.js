@@ -223,10 +223,10 @@ exports["Stream a text file from ftp to a file"] = function(beforeExit){
 
 exports["GET a redirect with a relative Location"] = function(beforeExit){
   var loaded = false;
-  open("http://golang.org/cmd/5a",function(err,go){
+  open("http://golang.org/cmd/5a",function(err,go,res){
     loaded = true
-    assert.ok(err)
-    console.log(go)
+    assert.ifError(err)
+    assert.includes(go,'<title>Command 5a - The Go Programming Language</title>')
   })
   beforeExit(function(){assert.ok(loaded)})
 }
