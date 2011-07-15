@@ -231,6 +231,17 @@ exports["GET a redirect with a relative Location"] = function(beforeExit){
   beforeExit(function(){assert.ok(loaded)})
 }
 
+exports["GET a redirect with a relative Location without 'follow'"] = function(beforeExit){
+  var loaded = false;
+  open("http://golang.org/cmd/5a",{follow:false},function(err,go,res){
+    loaded = true
+    assert.ifError(err)
+    assert.equal(res.statusCode,301)
+    assert.includes(go,'Moved Permanently')
+  })
+  beforeExit(function(){assert.ok(loaded)})
+}
+
 exports["Chain it"] = function(beforeExit){
   var stream = writeStream();
   var loaded = false;
