@@ -11,6 +11,7 @@
   "devDependencies": {
     "ftp": "0.1.1"
   },
+  "repository": "git://github.com/publicclass/open-uri.git",
   "keywords": ["open", "uri", "open-uri"],
   "scripts": { "test": "expresso test/test-open-uri.js" },
   "engines": { "node": ">= 0.3.6" }
