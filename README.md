@@ -72,11 +72,11 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 * [Change] Added the `buffer` option, which is an inverted `stream`, which is now deprecated. 
 * [Fix] Avoid a global variable (by [senorpedro](https://github.com/senorpedro/))
+* [Fix] _HTTP_/_HTTPS_ Only 301, 302 and 307 is proper statusCodes for redirects.
 
 ### 0.3.5
 
 * [Fix] Use Buffer.byteLength(body) only on strings, and body.length on Buffers.
-
 * [Fix] Support for broken redirect implementations that give relative Location: headers.
 
 ### 0.3.4
