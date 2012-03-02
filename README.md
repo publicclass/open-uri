@@ -41,7 +41,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ### Options for all schemes
 
-* `stream`    (boolean) For when you only want the callback to receive a stream instead of the complete body as the second argument. Defaults to `false`.
+* `buffer`    (boolean) For when you only want the body to be buffered and returned as the second argument instead of receiving the direct stream. Defaults to `true`.
 
 
 ### Options for HTTP(S)
@@ -68,9 +68,14 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.4.0
+
+* [Change] Added the `buffer` option, which is an inverted `stream`, which is now deprecated. 
+* [Fix] Avoid a global variable (by [senorpedro](https://github.com/senorpedro/))
+
 ### 0.3.5
 
-* [Fix] User Buffer.byteLength(body) only on strings, and body.length on Buffers.
+* [Fix] Use Buffer.byteLength(body) only on strings, and body.length on Buffers.
 
 * [Fix] Support for broken redirect implementations that give relative Location: headers.
 
