@@ -68,6 +68,11 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 
 ## History
 
+### 0.4.1
+
+* [Fix] Added `buffer`-option to file and ftp schemes.
+* [Change] Updated mime dependency to 1.2.5.
+
 ### 0.4.0
 
 * [Change] Added the `buffer` option, which is an inverted `stream`, which is now deprecated. 
