@@ -1,10 +1,6 @@
-var open = require("../lib/open-uri");
+var open = require('../');
 
 describe('open-uri',function(){
-
-  it('should be a Stream',function(){
-    open('/var/log/system.log').should.be.an.instanceof(require('stream'));
-  })
 
   it('should throw when error and no callback',function(){
     (function(){

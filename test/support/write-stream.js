@@ -7,7 +7,6 @@ function WriteStream(done){
     stream.should.have.property('written',true)
     done()
   })
-  console.log('WriteStream!',this)
 }
 WriteStream.prototype = {
   __proto__: require("stream").prototype,
