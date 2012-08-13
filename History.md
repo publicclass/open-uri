@@ -1,3 +1,6 @@
+# 0.4.3 / 2012-08-13
+
+* [Change] Now using built-in zlib for gzip support (thanks to [sphericalhorse](https://github.com/sphericalhorse))
 
 # 0.4.2 / 2012-08-13
 
