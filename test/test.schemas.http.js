@@ -6,7 +6,8 @@ describe('open-uri',function(){
   describe('http',function(){
 
     it('should GET a website',function(done){
-      open("http://google.com",function(err,google){
+      open("http://google.com",function(err,google,res){
+        res.should.have.status(200)
         google.should.be.a('string')
         google.should.not.be.empty
         done(err);
@@ -15,7 +16,8 @@ describe('open-uri',function(){
 
     it('should GET a website with an addressable.URI object',function(done){
       var url = require('addressable').parse("http://google.com");
-      open(url,function(err,google){
+      open(url,function(err,google,res){
+        res.should.have.status(200)
         google.should.be.a('string')
         google.should.not.be.empty
         done(err);
@@ -24,7 +26,8 @@ describe('open-uri',function(){
 
     it('should GET a website with a node.js built-in URL object',function(done){
       var url = require("url").parse("http://google.com");
-      open(url,function(err,google){
+      open(url,function(err,google,res){
+        res.should.have.status(200)
         google.should.be.a('string')
         google.should.not.be.empty
         done(err);
@@ -32,9 +35,20 @@ describe('open-uri',function(){
     })
 
     it('should GET a website with auth',function(done){
-      open("http://user:pass@google.com",function(err,google){
+      open("http://user:pass@google.com",function(err,google,res){
+        res.should.have.status(200)
         google.should.be.a('string')
         google.should.not.be.empty
+        done(err);
+      })
+    })
+
+    it('should GET a website that accepts gzip',function(done){
+      open("http://sunet.se",{follow:false},function(err,sunet,res){
+        res.should.have.status(302)
+        res.should.have.header('content-encoding','gzip')
+        sunet.should.be.a('string')
+        sunet.should.not.be.empty
         done(err);
       })
     })

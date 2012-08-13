@@ -31,5 +31,15 @@ describe('open-uri',function(){
       })
     })
 
+    it('should GET a website that accepts gzip',function(done){
+      open("https://github.com",function(err,sunet,res){
+        res.should.have.status(200)
+        res.should.have.header('content-encoding','gzip')
+        sunet.should.be.a('string')
+        sunet.should.not.be.empty
+        done(err);
+      })
+    })
+
   })
 })
