@@ -47,7 +47,7 @@ Uses the [addressable module](https://github.com/publicclass/addressable) for pa
 ### Options for HTTP(S)
 
 * `follow`    (boolean)   Follow redirects. Defaults to `true`.
-* `gzip`      (boolean)   If the request should be attempted with gzip. Defaults to `true` if the [node-compress module](https://github.com/waveto/node-compress) is available.
+* `gzip`      (boolean)   If the request should be attempted with gzip. Defaults to `true`.
 * `headers`   (object)    Headers to pass along with the HTTP request.
 * `method`    (string)    HTTP request method. Default 'GET'.
 * `body`      (readablestream|string|buffer) A body of data to pass with the request.
