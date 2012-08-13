@@ -1,6 +1,7 @@
 var open = require("../")
-  , WriteStream = require('./support/write-stream')
-  , fs = require("fs");
+  , fs = require("fs")
+  , should = require('should')
+  , WriteStream = require('./support/write-stream');
 
 describe('open-uri',function(){
 
@@ -19,7 +20,8 @@ describe('open-uri',function(){
 
     it('should attempt to get a non-existing text file from ftp',function(done){
       open("ftp://ftp.sunet.se/im-not-here.txt",function(err,rfc){
-        err.should.exist
+        err.should.be.instanceof(Error)
+        should.not.exist(rfc)
         done()
       })
     })
@@ -33,8 +35,7 @@ describe('open-uri',function(){
       var file = fs.createWriteStream(path)
       open(uri,file)
       file.on('close',function(){
-        fs.statSync(path).should.have.property('size',size)
-        done();
+        fs.stat(path,done)
       })
     })
 
