@@ -1,0 +1,233 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>OpenURI by publicclass</title>
+
+    <link rel="stylesheet" href="stylesheets/styles.css">
+    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1>OpenURI</h1>
+        <p>Asynchronous Open URI, a CommonJS module inspired by Rubys Open-URI library.</p>
+
+        <p class="view"><a href="https://github.com/publicclass/open-uri">View the Project on GitHub <small>publicclass/open-uri</small></a></p>
+
+
+        <ul>
+          <li><a href="https://github.com/publicclass/open-uri/zipball/master">Download <strong>ZIP File</strong></a></li>
+          <li><a href="https://github.com/publicclass/open-uri/tarball/master">Download <strong>TAR Ball</strong></a></li>
+          <li><a href="https://github.com/publicclass/open-uri">View On <strong>GitHub</strong></a></li>
+        </ul>
+      </header>
+      <section>
+        <h1>Asynchronous Open URI</h1>
+
+<p>A CommonJS module inspired by Rubys Open-URI library.</p>
+
+<h2>Install</h2>
+
+<p>It's available on npm, so a simple <code>npm install open-uri</code> should be enough.</p>
+
+<h2>Usage</h2>
+
+<pre><code>var open = require("open-uri");
+
+// Get a website
+open("http://google.com",function(err,google){console.log(google)})
+
+// Get a file
+open("/var/log/system.log",function(err,log){console.log(log)})
+
+// Stream a file to STDOUT
+open("file:///var/log/system.log",process.stdout)
+
+// Stream a website to a file
+var file = require("fs").createWriteStream("/tmp/goog.html")
+open("https://encrypted.google.com/search?q=open+uri",file)
+
+// Chain it 
+open("http://google.com",console.log)("http://publicclass.se",process.stdout)
+
+// Get a file off of an FTP
+open("ftp://user:pass@ftp.example.com/myfile.txt",function(err,txt){console.log(txt)})
+</code></pre>
+
+<h2>Supported schemes</h2>
+
+<p>http, https, file &amp; ftp</p>
+
+<p>Uses the <a href="https://github.com/publicclass/addressable">addressable module</a> for parsing the scheme and the <a href="https://github.com/bentomas/node-mime">mime module</a> for parsing the data.</p>
+
+<h3>Options for all schemes</h3>
+
+<ul>
+<li>
+<code>buffer</code>    (boolean) For when you only want the body to be buffered and returned as the second argument instead of receiving the direct stream. Defaults to <code>true</code>.</li>
+</ul><h3>Options for HTTP(S)</h3>
+
+<ul>
+<li>
+<code>follow</code>    (boolean)   Follow redirects. Defaults to <code>true</code>.</li>
+<li>
+<code>gzip</code>      (boolean)   If the request should be attempted with gzip. Defaults to <code>true</code> if the <a href="https://github.com/waveto/node-compress">node-compress module</a> is available.</li>
+<li>
+<code>headers</code>   (object)    Headers to pass along with the HTTP request.</li>
+<li>
+<code>method</code>    (string)    HTTP request method. Default 'GET'.</li>
+<li>
+<code>body</code>      (readablestream|string|buffer) A body of data to pass with the request.</li>
+<li>
+<code>key</code>       (string)    (HTTPS Only) Private key to use for SSL. Defaults to ENV var <code>NODE_HTTPS_KEY</code> or attempts to find it as "./key.pem".</li>
+<li>
+<code>cert</code>      (string)    (HTTPS Only) Public x509 certificate to use. Defaults to ENV var NODE_HTTPS_CERT or attempts to find it as "./cert.pem".</li>
+<li>
+<code>ca</code>        (string|array) (HTTPS Only) An authority certificate or array of authority certificates to check the remote host against.</li>
+</ul><h3>Options for file</h3>
+
+<ul>
+<li>
+<code>encoding</code>  (string) The encoding of the file to read.</li>
+</ul><h3>Options for FTP</h3>
+
+<ul>
+<li>
+<code>anonymous</code> (boolean) If no user info is in the URI, add anonymous. Defaults to <code>true</code>.</li>
+</ul><h2>History</h2>
+
+<h3>0.4.1</h3>
+
+<ul>
+<li>[Fix] Added <code>buffer</code>-option to file and ftp schemes.</li>
+<li>[Change] Updated mime dependency to 1.2.5.</li>
+</ul><h3>0.4.0</h3>
+
+<ul>
+<li>[Change] Added the <code>buffer</code> option, which is an inverted <code>stream</code>, which is now deprecated. </li>
+<li>[Fix] Avoid a global variable (by <a href="https://github.com/senorpedro/">senorpedro</a>)</li>
+<li>[Fix] <em>HTTP</em>/<em>HTTPS</em> Only 301, 302 and 307 is proper statusCodes for redirects.</li>
+</ul><h3>0.3.5</h3>
+
+<ul>
+<li>[Fix] Use Buffer.byteLength(body) only on strings, and body.length on Buffers.</li>
+<li>[Fix] Support for broken redirect implementations that give relative Location: headers.</li>
+</ul><h3>0.3.4</h3>
+
+<ul>
+<li>[Fix] Use Buffer.byteLength(body) for Content-Length header as well, it's just better (and fixes a bug where the body was cut off).</li>
+</ul><h3>0.3.3</h3>
+
+<ul>
+<li>[Fix] Avoid 'Out of bounds'-errors by using Buffer.byteLength(chunk) instead of chunk.length.</li>
+</ul><h3>0.3.2</h3>
+
+<ul>
+<li>[Fix] Errors was being thrown when using userinfo in HTTP uris.</li>
+</ul><h3>0.3.1</h3>
+
+<ul>
+<li>[Fix] Updated <code>addressable</code> dependency to 0.3.3. Now both addressable.URI and Nodes built-in URL objects are valid as the <code>uri</code> argument.</li>
+<li>[Fix] Fixed error thrown when an error occurs in utils.buffer().</li>
+</ul><h3>0.3.0</h3>
+
+<ul>
+<li><p>[Feature] Updated <code>addressable</code> dependency to 0.3.1.</p></li>
+<li><p>[Feature] <em>HTTPS</em> Added key and certificate parsing.</p></li>
+<li><p>[Feature] <em>HTTP</em>/<em>HTTPS</em> Added a <code>method</code> option can be used if anything other than GET is desired.</p></li>
+<li><p>[Feature] <em>HTTP</em>/<em>HTTPS</em> Added a <code>body</code> options for passing a payload with the request. Can be either a ReadableStream, a String or a Buffer.</p></li>
+</ul><h3>0.2.2</h3>
+
+<ul>
+<li><p>[Feature] Re-factored the schemes into separate files. Now adding more schemes will be much easier.</p></li>
+<li><p>[Feature] Added a simple binary. Usage: <code>open-uri http://google.com</code></p></li>
+<li><p>[Fix] <em>FTP</em> is now closing properly when completed or failed.</p></li>
+</ul><h3>0.2.1</h3>
+
+<ul>
+<li><p>[Feature] Better parsing of content using the <a href="https://github.com/bentomas/node-mime">mime module</a> for Content-Type lookup.</p></li>
+<li><p>[Feature] <em>FTP</em> Initial support using the <a href="https://github.com/mscdex/node-ftp">node-ftp module</a>.</p></li>
+</ul><h3>0.2.0</h3>
+
+<ul>
+<li><p>[Feature] <em>HTTP(S)</em> Now supports gzip responses (and adds a 'Accept-Encoding: gzip'-header if there is none already).</p></li>
+<li><p>[Feature] <em>HTTP(S)</em> Now decodes JSON if response is of 'Content-Type: application/json'.</p></li>
+<li><p>[Fix] <em>HTTP(S)</em> Fixed an issue with redirects.</p></li>
+</ul><h3>0.1.0</h3>
+
+<ul>
+<li>Initial version.</li>
+</ul><h2>TODO</h2>
+
+<ul>
+<li><p><em>HTTP(S)</em> Support older versions of Node? Currently only support 0.3.6 and up (because of the new HTTP Client API).</p></li>
+<li><p><em>HTTP(S)</em> Proxy support.</p></li>
+<li><p><em>FTP</em> Listing files (when uri.pathname ends with "/")</p></li>
+<li><p><em>FTP</em> Uploading files (when opts.body is passed)</p></li>
+<li><p>A timeout option for all schemes would be useful.</p></li>
+<li>
+<p>A binary, just for fun really. Usage: <code>open-uri http://google.com</code>. </p>
+
+<ul>
+<li>Output to process.stdout by default. </li>
+<li>Allow a REST interface? So if something is written to stdin it's sent as body to the url using POST by default, but definable with -X (curl style!)</li>
+<li>Pass command line arguments as options to the scheme functions. Ex. <code>open-uri -gzip http://google.com</code> sets opts.gzip to true.</li>
+</ul>
+</li>
+<li>
+<p>More schemes support? Suggestions?</p>
+
+<ul>
+<li>Support for opening a file descriptor? Basically a shortcut for fs.readFile(fd).</li>
+<li>S3 (using <a href="https://github.com/LearnBoost/knox">knox module</a>), should list objects when path ends with "/"</li>
+<li>NNTP (using <a href="https://github.com/mscdex/node-nntp">node-nntp module</a>)</li>
+<li>IRC (using <a href="https://github.com/martynsmith/node-irc">node-irc module</a>), open("irc://<a href="mailto:bot@chat.freenode.net">bot@chat.freenode.net</a>/nodejs") -&gt; callback for each message? with a say function in the callback? ex: <code>function(err,from,to,msg,say){ if( to == "bot" &amp;&amp; ~msg.indexOf("hello") ){ say(from+": HI!") } }</code> <code>this</code> could be the irc object so the socket can be closed...</li>
+<li>SQL query. Is there a standard URI for this? Something like: <code>mysql://root@localhost/mydb?query=SELECT * FROM x;</code> or <code>sqlite3://file.sqlite?query=SELECT * FROM x;</code> possibly with support for input escaping. open("sqlite3://file.sqlite?query=SELECT * FROM x WHERE id=? AND name=?;",[12,"bob"]) using the drivers own escaping. With a callback like <code>function(err,rows,meta){}</code>.</li>
+</ul>
+</li>
+</ul><h2>Thanks to</h2>
+
+<ul>
+<li><p><a href="https://github.com/mikeal">Mikeal Rogers</a>, for his excellent <a href="https://github.com/mikeal/request/">request module</a>.</p></li>
+<li><p><a href="https://github.com/visionmedia">TJ Holowaychuck</a>, for his minimalist projects inspiring this little tool.</p></li>
+<li><p><a href="https://github.com/mscdex">Brian White</a>, for <a href="https://github.com/mscdex/node-ftp">ftp</a> and <a href="https://github.com/mscdex/node-nntp">nntp</a> modules.</p></li>
+</ul><h2>License</h2>
+
+<p>(The MIT License)</p>
+
+<p>Copyright (c) 2011 Robert Sköld &lt;<a href="mailto:robert@publicclass.se">robert@publicclass.se</a>&gt;</p>
+
+<p>Permission is hereby granted, free of charge, to any person obtaining
+a copy of this software and associated documentation files (the
+'Software'), to deal in the Software without restriction, including
+without limitation the rights to use, copy, modify, merge, publish,
+distribute, sublicense, and/or sell copies of the Software, and to
+permit persons to whom the Software is furnished to do so, subject to
+the following conditions:</p>
+
+<p>The above copyright notice and this permission notice shall be
+included in all copies or substantial portions of the Software.</p>
+
+<p>THE SOFTWARE IS PROVIDED 'AS IS', WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY
+CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.</p>
+      </section>
+      <footer>
+        <p>This project is maintained by <a href="https://github.com/publicclass">publicclass</a></p>
+        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+      </footer>
+    </div>
+    <script src="javascripts/scale.fix.js"></script>
+    
+  </body>
+</html>
