@@ -36,7 +36,7 @@
 
   http, https, file & ftp
 
-Uses the [addressable module](https://github.com/publicclass/addressable) for parsing the scheme and the [mime module](https://github.com/bentomas/node-mime) for parsing the data.
+Uses the [addressable module](https://github.com/publicclass/addressable) for parsing the scheme and the [mime module](https://github.com/broofa/node-mime) for parsing the data.
 
 
 ### Options for all schemes
